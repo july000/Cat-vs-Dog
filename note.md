@@ -57,6 +57,16 @@ nn.Conv2d(in_channels, out_channels, kernel_size, stride=1, padding=0, dilation=
 
     stride 步长
 
+### 评估指标
+top-k
+https://zhuanlan.zhihu.com/p/340760336
+
+* 评价指标
+分类任务中常见的四种指标：包括准确率、精确率、召回率和F值、top-k
+
+Top-K准确率就是用来计算预测结果中概率最大的前K个结果包含正确标签的占比
+换句话说，平常我们所说的准确率其实就是Top-1准确率。下面我们还是通过一个例子来进行说明。
+
 
 
 
