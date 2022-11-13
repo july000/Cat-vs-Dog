@@ -68,10 +68,64 @@ Top-K准确率就是用来计算预测结果中概率最大的前K个结果包�
 换句话说，平常我们所说的准确率其实就是Top-1准确率。下面我们还是通过一个例子来进行说明。
 
 
+### build env
+conda install pytorch==1.12.1 torchvision==0.13.1 torchaudio==0.12.1 cudatoolkit=11.3
+pip install pyyaml
+pip install tensorboard
+    ERROR: Could not find a version that satisfies the requirement tensorboard (from versions: none)
+    ERROR: No matching distribution found for tensorboard
 
+    conda install -y -c conda-forge tensorboard
 
+pip install tqdm
 
+### run
+conda create -n catdog python=3.8
+conda activate catdog
+python main.py
+    File "main.py", line 73, in <module>
+        main()
+    File "main.py", line 54, in main
+        train(new_train_loader, device, net, epochs, lr, criterion, optimizer, tensorboard_path)
+    File "/home/me/1TSSD/renjunmei/Cat-vs-Dog/train.py", line 37, in train
+        writer = SummaryWriter(tensorboard_path)
+    can't start new thread
 
+git push origin master
+remote: Permission to july000/Cat-vs-Dog.git denied to mljack.
 
+git config credential.helper
+> store
+
+git config --global credential.helper 'store --file ~/.my-credentials'
+> store --file ~/.my-credentials
+git credential-store --file ~/git.store store
+
+https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+create a new SSH
+    ssh-keygen -t ed25519 -C "3636398752@qq.com"
+    file name:enter
+    passphare:july
+    Your identification has been saved in /home/me/.ssh/id_ed25519.
+    Your public key has been saved in /home/me/.ssh/id_ed25519.pub.
+    The key fingerprint is:
+    SHA256:zQ9J+GM8Et11Fw1It6HiDfRHR9Awh8tBdqOxKooEU3g 3636398752@qq.com
+    The key's randomart image is:
+    +--[ED25519 256]--+
+    |    ..    ...+%XX|
+    |   ..E   + o.**O=|
+    |   o.   o = ++oo |
+    |    o    O =..o  |
+    |     .  S.%..    |
+    |    . . .o.=     |
+    |     . .    .    |
+    |                 |
+    |                 |
+    +----[SHA256]-----+
+add to ssh agent
+    eval "$(ssh-agent -s)"
+        eval "$(ssh-agent -s)"
+    ssh-add /home/me/.ssh/id_ed25519
+        passphrase:july
 
 

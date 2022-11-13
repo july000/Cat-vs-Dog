@@ -1,8 +1,7 @@
 from torch import nn
 from metric import *
 from tqdm import tqdm
-from torch.utils.tensorboard import SummaryWriter
-
+import pandas as pd
 
 
 def validate(validation_loader, device, model, criterion):
@@ -19,14 +18,14 @@ def validate(validation_loader, device, model, criterion):
 
             prec1, prec2 = accuracy(outputs, labels, topk=(1,2))
             n = inputs.size(0) # barch_size
-            val_top1.update(prec.item(), n)
+            val_top1.update(prec1.item(), n)
             validate_loss += loss.item()
-            postfix = {'validation_loss':%.6f%(validate_loss/(i+1)), 'validation_acc':'%.6f'%val_top1.avg}
+            postfix = {'validation_loss':'%.6f'%(validate_loss/(i+1)), 'validation_acc':'%.6f'%val_top1.avg}
             validate_loader.set_postfix(log=postfix)
         val_acc = val_top1.avg
     return val_acc
 
-def submission(test_loader, device, model):
+def submission(csv_path, test_loader, device, model):
     result_list = []
     model = model.to(device)
     test_loader = tqdm(test_loader)
@@ -41,7 +40,13 @@ def submission(test_loader, device, model):
 
             for i in range(len(predicted)):
                 result_list.append({'id':labels[i].item(), 'label':predicted[i].item()})
-    return result_list
+    # convert list to dataframe, and then generate csv format file
+    columns = result_list[0].keys()
+    result_list = {col: [anno[col] for anno in result_list] for col in columns}
+    result_df = pd.DataFrame(result_list)
+    result_df = result_df.sort_values("id")
+    result_df.to_csv(csv_path, index=None)
+    # return result_list
 
 
 

@@ -1,5 +1,4 @@
 import os
-from random import shuffle
 import torch
 from PIL import Image
 from torchvision import transforms
@@ -18,7 +17,7 @@ class MyDataSet(Dataset):
                 [
                     transforms.Resize(size=(224, 224)),
                     transforms.ToTensor(),
-                    transforms.Normalizer(min=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
+                    transforms.Normalize(mean=(0.5, 0.5, 0.5), std=(0.5, 0.5, 0.5))
                 ]
             )
         else:
@@ -63,7 +62,7 @@ def dataset_split(full_ds, train_rate):
     return train_ds, validate_ds
 
 # 3.data loader
-def datalodaer(dataset, batch_size):
+def dataloader(dataset, batch_size):
     '''
     我们制作好的数据集不能直接送入模型中训练,需要使用一个数据加载器(dataloader)来加载数据,
     使用torch.utils.data.DataLoader()来将制作好的数据集划分成一个一个的batch
@@ -83,9 +82,9 @@ def debug():
     train_ds = MyDataSet(train_path)
     new_train_ds, validation_ds = dataset_split(train_ds, 0.8)
     test_ds = MyDataSet(test_path, train=False)
-    new_train_loader = datalodaer(new_train_ds, batch_size)
-    validation_loader = datalodaer(validation_ds, batch_size)
-    test_loader = datalodaer(test_ds, batch_size)
+    new_train_loader = dataloader(new_train_ds, batch_size)
+    validation_loader = dataloader(validation_ds, batch_size)
+    test_loader = dataloader(test_ds, batch_size)
 
     # testing train data can iterate or not
     for i, item in enumerate(tqdm(test_ds)):

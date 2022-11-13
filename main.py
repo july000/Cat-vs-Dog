@@ -1,14 +1,13 @@
 
 import torch
-import os 
-import torchvision import models
+from torchvision import models
 from torch import optim, nn
 
 from read_yaml import parse_yaml
 from model import MyCNN
 from train import train
 from eval import validate, submission
-from dataset import MyDataset, dataset_split, dataloader
+from dataset import MyDataSet, dataset_split, dataloader
 
 # main function to be executed
 def main():
@@ -22,14 +21,15 @@ def main():
     test_path = cfg['test_path']
     tensorboard_path = cfg['tensorboard_path']
     model_save_path = cfg['model_save_path']
-    device = torch.device("cuda:0" if torch.cuda.is_availabel() else "cpu")
+    csv_path = cfg['csv_path']
+    device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
     # using customized network
     # net = MyCNN()
 
     # using ResNet18 network and pretrained weights (network need fine-tune)
     resnet18 = models.resnet18(pretrained=False)
-    model_path = './resnet18.pth'
+    model_path = './resnet18/resnet18-5c106cde.pth'
     resnet18.load_state_dict(torch.load(model_path))
     resnet18.fc = nn.Linear(512, 2) # adjust the output of last layer to 2 dim
     net = resnet18
@@ -39,9 +39,9 @@ def main():
     # resnet50.fc = nn.Linear(2048, 2) # adjust the output of last layer to 2 dim
     # net = resnet50
 
-    train_ds = MyDataset(train_path)
+    train_ds = MyDataSet(train_path)
     new_train_ds, validate_ds = dataset_split(train_ds, 0.8)
-    test_ds = MyDataset(test_path, train=False)
+    test_ds = MyDataSet(test_path, train=False)
 
     new_train_loader = dataloader(new_train_ds, batch_size)
     validate_loader = dataloader(validate_ds, batch_size)
@@ -66,7 +66,7 @@ def main():
     print('val_acc:', '%.2f'%validate(validate_loader, device, val_net, criterion) + '%')
 
     # 3.generate results
-    submission(test_loader, device, net)
+    submission(csv_path, test_loader, device, net)
 
 
 if __name__ == '__main__':

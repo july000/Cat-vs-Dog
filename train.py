@@ -5,7 +5,9 @@ from tqdm import tqdm
 # define train funvtion
 # the relationship of top1, loss, optimizer, criterion???
 def train(train_loader, device, model, epochs, lr, criterion, optimizer, tensorboard_path):
-    model = model.to_(device) # put model to GPU
+    model = model.to(device) # put model to GPU
+    writer = SummaryWriter(tensorboard_path)
+
     for epoch in range(epochs):
         model.train() # set train mode
         top1 = AverageMeter() # metric
@@ -34,7 +36,6 @@ def train(train_loader, device, model, epochs, lr, criterion, optimizer, tensorb
             train_loader.set_postfix(log=postfix) # 这个函数的作用是什么？
 
             # tensorboard surve drawing
-            writer = SummaryWriter(tensorboard_path)
             writer.add_scalar('Train/Loss', loss.item(), epoch)
             writer.add_scalar('Train/Accuracy', top1.avg, epoch)
             writer.flush()

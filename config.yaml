@@ -1,9 +1,9 @@
-data_root: '/'
-train_path: '/'
-test_path: '/'
+data_root: '/home/me/share/99_exchange/renjunmei/dataset/dogs-vs-cats-redux-kernels-edition/'
+train_path: '/home/me/share/99_exchange/renjunmei/dataset/dogs-vs-cats-redux-kernels-edition/train/'
+test_path: '/home/me/share/99_exchange/renjunmei/dataset/dogs-vs-cats-redux-kernels-edition/test'
 tensorboard_path: './tensorboard_info'
 model_save_path: './dogs-vs-cats.pth'
-
-batch_size: 200
+csv_path: './submission.csv'
+batch_size: 16
 epochs: 10
 lr: 0.001

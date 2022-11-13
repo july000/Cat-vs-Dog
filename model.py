@@ -1,8 +1,7 @@
-from turtle import forward
 from torch import nn 
 import torch.nn.functional as F
 
-class MyCNN(nn.Model):
+class MyCNN(nn.Module):
     def __init__(self):
         super(MyCNN, self).__init__()
         self.conv1 = nn.Conv2d(3, 8, kernel_size=3, stride=1, padding=1) # the size does not change after convolutional layer

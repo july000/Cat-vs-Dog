@@ -25,7 +25,7 @@ def accuracy(output, label, topk=(1,)):
     correct = pred.eq(label.view(1, -1).expand_as(pred))
     rtn = []
     for k in topk:
-        correct_k = correct[:k].contigunes().view(-1).float().sum(0)
+        correct_k = correct[:k].contiguous().view(-1).float().sum(0)
         rtn.append(correct_k.mul_(100.0/batch_size))
 
     return rtn
