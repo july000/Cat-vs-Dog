@@ -144,6 +144,45 @@ nvcc is the NVIDIA CUDA Compiler, use it to compile and link both host and GPU c
 nvidia-smi -a
 
 
+### Loss Function
+#### Link
+* `https://www.datarobot.com/blog/introduction-to-loss-functions/`
 
+* `https://www.section.io/engineering-education/understanding-loss-functions-in-machine-learning/`
+
+* `https://builtin.com/machine-learning/common-loss-functions`
+#### What is loss function
+It’s a method of evaluating how well your algorithm models your dataset.
+
+Loss functions are related to model accuracy,
+
+loss function will simply measure the absolute difference between our prediction and the actual value.In mathematical notation, it might look something like abs(y_predicted – y).
+
+loss function will vary significantly based on the domain and unique context of the problem that you’re applying machine learning to
+
+#### Types of loss functions
+* Mean squared error (MSE/L2 Loss)
+used for regression models.
+* Likelihood loss
+used in classification problems
+
+The function takes the predicted probability for each input example and multiplies them
+
+* Log loss (cross entropy loss)
+used frequently in classification problems
+
+It’s just a straightforward modification of the likelihood function with logarithms.
+* HINGE LOSS
+![](https://builtin.com/sites/www.builtin.com/files/styles/ckeditor_optimize/public/inline-images/4_common-loss-functions.jpeg)
+#### Loss functions and optimizers
+Loss functions provide more than just a static representation of how your model is performing—they’re how your algorithms **fit data** in the first place. 
+
+Most machine learning algorithms use some sort of loss function in the process of optimization, or finding the best parameters (weights) for your data.
+
+The model then optimizes the MSE functions—or in other words, makes it the lowest possible—through the use of an optimizer algorithm like **Gradient Descent**.
+
+in essence, the loss function and optimizer work in tandem(串联) to fit the algorithm to your data in the best way possible.
+
+Loss functions and optimizers are both related to model accuracy
 
 
