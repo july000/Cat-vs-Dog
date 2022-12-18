@@ -127,5 +127,23 @@ add to ssh agent
         eval "$(ssh-agent -s)"
     ssh-add /home/me/.ssh/id_ed25519
         passphrase:july
+### 疑问
+conda与cuda之间的关系
+cuda与torch之间的版本关系
+torch和torchvision的版本
+
+
+CUDA Toolkit on Windows 10
+    https://medium.com/analytics-vidhya/cuda-toolkit-on-windows-10-20244437e036
+
+How to Check CUDA Version Easily
+    https://varhowto.com/check-cuda-version/
+
+nvcc is the NVIDIA CUDA Compiler, use it to compile and link both host and GPU code.
+
+nvidia-smi -a
+
+
+
 
 
