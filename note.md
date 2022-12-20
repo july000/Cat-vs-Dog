@@ -185,4 +185,11 @@ in essence, the loss function and optimizer work in tandem(串联) to fit the al
 
 Loss functions and optimizers are both related to model accuracy
 
+### Basic concepts
+https://towardsdatascience.com/simply-deep-learning-an-effortless-introduction-45591a1c4abb
 
+https://www.analyticsvidhya.com/blog/2017/05/25-must-know-terms-concepts-for-beginners-in-deep-learning/
+
+https://medium.datadriveninvestor.com/deep-learning-fundamental-important-concepts-59d7ae90901b
+
+https://developer.nvidia.com/blog/deep-learning-nutshell-core-concepts/
